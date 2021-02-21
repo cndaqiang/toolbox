@@ -36,4 +36,13 @@ ARCH=xxx make
 ```
 
 
+## CNQ
+```
+sudo apt-get install libboost-all-dev
+```
+自己编译的fftw，` vi tools/Makefile`
+```
+CXXFLAGS:=$(CXXFLAGS) -I../libs -I/home/cndaqiang/code/fftw-3.3.4/include
+```
+
 
