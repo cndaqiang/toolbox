@@ -44,5 +44,9 @@ sudo apt-get install libboost-all-dev
 ```
 CXXFLAGS:=$(CXXFLAGS) -I../libs -I/home/cndaqiang/code/fftw-3.3.4/include
 ```
+编译boost
+下载,https://sourceforge.net/projects/boost/files/boost/
+```
 
+```
 
