@@ -47,6 +47,10 @@ CXXFLAGS:=$(CXXFLAGS) -I../libs -I/home/cndaqiang/code/fftw-3.3.4/include
 编译boost
 下载,https://sourceforge.net/projects/boost/files/boost/
 ```
-
+tar --bzip2 -xf boost_1_66_0.tar.bz2
+cd boost_1_66_0/
+pwd
+./bootstrap.sh --prefix=/home/chendq/soft/gnu8/boost_1_66_0
+./b2 --help
 ```
 
