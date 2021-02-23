@@ -54,3 +54,13 @@ pwd
 ./b2 --help
 ```
 
+添加fftw和boost到头文件
+```
+prepend-path    CPLUS_INCLUDE_PATH      ${fftw_HOME}/include
+prepend-path    CPLUS_INCLUDE_PATH      ${boost_HOME}/include
+```
+或者填到`toolbox/make.in`
+```
+CXXFLAGS=-O3 -ftracer -g  -DTB_FFTAC -D__USEREGEX=1 -I/home/apps/mathlib/fftw/gnu8/3.3.3/include -I/home/apps/mathlib/boost/gcc8.4/boost_1_66_0/include
+```
+
