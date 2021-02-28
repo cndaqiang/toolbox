@@ -118,36 +118,36 @@ cd boost_1_66_0/
 #### 环境参数
 ```
 echo "
-ROOT=$PWD
-export LD_LIBRARY_PATH=${ROOT}/math/lib:$LD_LIBRARY_PATH
-export LIBRARY_PATH=${ROOT}/math/lib:$LIBRARY_PATH
-export PATH=$PATH:/public/home/chendq/soft/gnu8/toolbox/bin
-ROOT=/public/home/chendq/soft/gnu8
-export LD_LIBRARY_PATH=${ROOT}/math/lib:$LD_LIBRARY_PATH
-export LIBRARY_PATH=${ROOT}/math/lib:$LIBRARY_PATH
-export C_INCLUDE_PATH=${ROOT}/math/include:$C_INCLUDE_PATH
-export CPLUS_INCLUDE_PATH=${ROOT}/math/include:$CPLUS_INCLUDE_PATH
-export PATH=${ROOT}/math/bin:$PATH
-export LD_LIBRARY_PATH=${ROOT}/fftw-3.3.3/lib:$LD_LIBRARY_PATH
-export LIBRARY_PATH=${ROOT}/fftw-3.3.3/lib:$LIBRARY_PATH
-export C_INCLUDE_PATH=${ROOT}/fftw-3.3.3/include:$C_INCLUDE_PATH
-export CPLUS_INCLUDE_PATH=${ROOT}/fftw-3.3.3/include:$CPLUS_INCLUDE_PATH
-export PATH=${ROOT}/fftw-3.3.3/bin:$PATH
-export LD_LIBRARY_PATH=${ROOT}/boost_1_66_0/lib:$LD_LIBRARY_PATH
-export LIBRARY_PATH=${ROOT}/boost_1_66_0/lib:$LIBRARY_PATH
-export C_INCLUDE_PATH=${ROOT}/boost_1_66_0/include:$C_INCLUDE_PATH
-export CPLUS_INCLUDE_PATH=${ROOT}/boost_1_66_0/include:$CPLUS_INCLUDE_PATH
-export PATH=${ROOT}/boost_1_66_0/bin:$PATH
+ROOT=$ROOT
+export LD_LIBRARY_PATH=\${ROOT}/math/lib:\$LD_LIBRARY_PATH
+export LIBRARY_PATH=\${ROOT}/math/lib:\$LIBRARY_PATH
+export PATH=\$PATH:/public/home/chendq/soft/gnu8/toolbox/bin
+export LD_LIBRARY_PATH=\${ROOT}/math/lib:\$LD_LIBRARY_PATH
+export LIBRARY_PATH=\${ROOT}/math/lib:\$LIBRARY_PATH
+export C_INCLUDE_PATH=\${ROOT}/math/include:$C_INCLUDE_PATH
+export CPLUS_INCLUDE_PATH=\${ROOT}/math/include:\$CPLUS_INCLUDE_PATH
+export PATH=\${ROOT}/math/bin:\$PATH
+export LD_LIBRARY_PATH=\${ROOT}/fftw-3.3.3/lib:\$LD_LIBRARY_PATH
+export LIBRARY_PATH=\${ROOT}/fftw-3.3.3/lib:\$LIBRARY_PATH
+export C_INCLUDE_PATH=\${ROOT}/fftw-3.3.3/include:$C_INCLUDE_PATH
+export CPLUS_INCLUDE_PATH=\${ROOT}/fftw-3.3.3/include:\$CPLUS_INCLUDE_PATH
+export PATH=\${ROOT}/fftw-3.3.3/bin:\$PATH
+export LD_LIBRARY_PATH=\${ROOT}/boost_1_66_0/lib:\$LD_LIBRARY_PATH
+export LIBRARY_PATH=\${ROOT}/boost_1_66_0/lib:\$LIBRARY_PATH
+export C_INCLUDE_PATH=\${ROOT}/boost_1_66_0/include:$C_INCLUDE_PATH
+export CPLUS_INCLUDE_PATH=\${ROOT}/boost_1_66_0/include:\$CPLUS_INCLUDE_PATH
+export PATH=\${ROOT}/boost_1_66_0/bin:\$PATH
+export PATH=\${ROOT}/toolbox/bin:\$PATH
 " > $ROOT/toolbox.sh
 source $ROOT/toolbox.sh
-echo alias toolbox=source $ROOT/toolbox.sh >> ~/.bashrc
+echo alias "toolbox='source $ROOT/toolbox.sh'" >> ~/.bashrc
 ```
 #### 正式编译
 ```
 cd $ROOT
 git clone https://github.com/cndaqiang/toolbox.git
 
-echo CXXFLAGS += -I/home/apps/mathlib/fftw/gnu8/3.3.3/include -I/home/apps/mathlib/boost/gcc8.4/boost_1_66_0/include >> $ROOT/toolbox/make.in
+echo CXXFLAGS += -I$ROOT/fftw-3.3.3/include -I$ROOT/boost_1_66_0/include >> $ROOT/toolbox/make.in
 cd toolbox/src
 make
 ```
