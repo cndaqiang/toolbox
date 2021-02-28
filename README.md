@@ -106,19 +106,60 @@ make -j36 #必须用make，用其他参数/完成后再输make会编译测试程
 ```
 ### boost
 ```
+cd $ROOT/source
+wget https://cndaqiang.gitee.io/packages//mirrors/boost/boost_1_66_0.tar.bz2
 tar --bzip2 -xf boost_1_66_0.tar.bz2
 cd boost_1_66_0/
 ./bootstrap.sh --prefix=$ROOT/boost_1_66_0
 ./b2 install
 ```
 ### toolbox
+#### 环境参数
+```
+echo "
+ROOT=$PWD
+export LD_LIBRARY_PATH=${ROOT}/math/lib:$LD_LIBRARY_PATH
+export LIBRARY_PATH=${ROOT}/math/lib:$LIBRARY_PATH
+export PATH=$PATH:/public/home/chendq/soft/gnu8/toolbox/bin
+ROOT=/public/home/chendq/soft/gnu8
+export LD_LIBRARY_PATH=${ROOT}/math/lib:$LD_LIBRARY_PATH
+export LIBRARY_PATH=${ROOT}/math/lib:$LIBRARY_PATH
+export C_INCLUDE_PATH=${ROOT}/math/include:$C_INCLUDE_PATH
+export CPLUS_INCLUDE_PATH=${ROOT}/math/include:$CPLUS_INCLUDE_PATH
+export PATH=${ROOT}/math/bin:$PATH
+export LD_LIBRARY_PATH=${ROOT}/fftw-3.3.3/lib:$LD_LIBRARY_PATH
+export LIBRARY_PATH=${ROOT}/fftw-3.3.3/lib:$LIBRARY_PATH
+export C_INCLUDE_PATH=${ROOT}/fftw-3.3.3/include:$C_INCLUDE_PATH
+export CPLUS_INCLUDE_PATH=${ROOT}/fftw-3.3.3/include:$CPLUS_INCLUDE_PATH
+export PATH=${ROOT}/fftw-3.3.3/bin:$PATH
+export LD_LIBRARY_PATH=${ROOT}/boost_1_66_0/lib:$LD_LIBRARY_PATH
+export LIBRARY_PATH=${ROOT}/boost_1_66_0/lib:$LIBRARY_PATH
+export C_INCLUDE_PATH=${ROOT}/boost_1_66_0/include:$C_INCLUDE_PATH
+export CPLUS_INCLUDE_PATH=${ROOT}/boost_1_66_0/include:$CPLUS_INCLUDE_PATH
+export PATH=${ROOT}/boost_1_66_0/bin:$PATH
+" > $ROOT/toolbox.sh
+source $ROOT/toolbox.sh
+echo alias toolbox=source $ROOT/toolbox.sh >> ~/.bashrc
+```
+#### 正式编译
+```
+cd $ROOT
+git clone https://github.com/cndaqiang/toolbox.git
 
+echo CXXFLAGS += -I/home/apps/mathlib/fftw/gnu8/3.3.3/include -I/home/apps/mathlib/boost/gcc8.4/boost_1_66_0/include >> $ROOT/toolbox/make.in
+cd toolbox/src
+make
+```
+
+#### 之前的草稿
+```
 添加fftw和boost到头文件
 ```
 prepend-path    CPLUS_INCLUDE_PATH      ${fftw_HOME}/include
 prepend-path    CPLUS_INCLUDE_PATH      ${boost_HOME}/include
 ```
 或者填到`toolbox/make.in`
+
 ```
 CXXFLAGS=-O3 -ftracer -g  -DTB_FFTAC -D__USEREGEX=1 -I/home/apps/mathlib/fftw/gnu8/3.3.3/include -I/home/apps/mathlib/boost/gcc8.4/boost_1_66_0/include
 ```
